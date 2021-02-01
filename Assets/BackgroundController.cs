@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BackgroundController : MonoBehaviour
 {
+   
 
     // スクロール速度
     private float scrollSpeed = -1;
@@ -29,13 +30,5 @@ public class BackgroundController : MonoBehaviour
             transform.position = new Vector2(this.startLine, 0);
         }
     }
-
-    //キューブ同士が当たったら音を鳴らす
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "CubeTag")
-        {
-            GetComponent<AudioSource>().Play();
-        }
-    }
+  
 }

@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class CubeController : MonoBehaviour
 {
+    //unityちゃん取得
+    private GameObject unitychan2D;
+
+    //AudioSource取得
+    AudioSource audioSource;
 
     // キューブの移動速度
     private float speed = -12;
@@ -14,7 +19,8 @@ public class CubeController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        //Components取得
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,14 +38,16 @@ public class CubeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //キューブ同士が当たったら音を鳴らす
-        if (collision.gameObject.tag == "CubeTag")
+        //ブロック同士が当たった時、あるいは地面に当たったときに音をならす
+        if (collision.gameObject.tag == "CubeTag" || collision.gameObject.tag == "GroundTag")
         {
-            GetComponent<AudioSource>().Play();  
+            GetComponent<AudioSource>().Play();
         }
-
-      
-
+        //ユニティちゃんが出現したときに音を消す
+            if (collision.gameObject.tag == "UnityChanTag")
+        {
+            GetComponent<AudioSource>().volume = 0;
+        }
     }
 
 }
